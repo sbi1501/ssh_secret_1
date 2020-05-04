@@ -1,25 +1,31 @@
 # ssh_secret
 
-## Development
+## Запуск контейнеров:
 
 ```
-docker-compose build
-
-docker-compose up -d
-
-docker-compose logs -f
-
 docker-compose up -d --build
+```
 
-docker-compose exec web python manage.py migrate --noinput
+## Остановка контейнеров:
 
-docker-compose exec db psql --username=username --dbname=dbname
-
+```
 docker-compose down -v
 ```
 
-## Production
+## Запуск миграций
 
 ```
-docker-compose -f docker-compose.prod.yml up -d --build
+docker-compose exec web python manage.py migrate --noinput
+```
+
+## Логи
+
+```
+docker-compose logs -f
+```
+
+## База данных
+
+```
+docker-compose exec db psql --username=username --dbname=dbname
 ```
