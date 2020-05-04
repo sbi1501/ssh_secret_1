@@ -29,3 +29,9 @@ docker-compose logs -f
 ```
 docker-compose exec db psql --username=username --dbname=dbname
 ```
+
+## Статические файлы
+
+```
+docker-compose exec web python manage.py collectstatic --no-input --clear
+```
