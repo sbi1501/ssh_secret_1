@@ -12,6 +12,12 @@ docker-compose up -d --build
 docker-compose down -v
 ```
 
+## Создание миграций
+
+```
+docker-compose exec web python manage.py makemigrations
+```
+
 ## Запуск миграций
 
 ```
