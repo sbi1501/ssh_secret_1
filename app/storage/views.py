@@ -3,6 +3,9 @@ from .models import Team, Secret
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import TeamSerializer
 
 
 def index(request):
@@ -30,6 +33,13 @@ class TeamListView(generic.ListView):
     paginate_by = 10
 
 
+class TeamListViewAPI(APIView):
+    def get(self, request):
+        teams = Team.objects.all()
+        serializer = TeamSerializer(teams, many=True)
+        return Response({'teams': serializer.data})
+
+
 class TeamDetailView(generic.DetailView):
     """Generic class-based detail view for a team."""
     model = Team
@@ -40,7 +50,7 @@ class SecretsByUserListView(LoginRequiredMixin, generic.ListView):
     Generic class-based view listing secrets to current user.
     """
     model = Secret
-    template_name = 'catalog/secret_list.html'
+    template_name = 'storage/secret_list.html'
     paginate_by = 10
 
     def get_queryset(self):
