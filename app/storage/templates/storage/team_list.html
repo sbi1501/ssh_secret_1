@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Team List</h1>
+
+{% if team_list %}
+<ul>
+
+    {% for team in team_list %}
+    <li>
+        <!--todo добавить руководителя команды-->
+        <a href="{{ team.get_absolute_url }}">{{ team.name }}</a> <!--({{team.author}})-->
+    </li>
+    {% endfor %}
+
+</ul>
+{% else %}
+<p>There are no teams in the storage.</p>
+{% endif %}
+{% endblock %}

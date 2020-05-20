@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>{{ team.name }}</h1>
+
+<!--todo добавить руководителя группы-->
+<!--<p><strong>Author:</strong> <a href="">{{ book.author }}</a></p> &lt;!&ndash; author detail link not yet defined &ndash;&gt;-->
+<p>
+    <strong>Members:</strong>
+    {% for member in team.members.all %}
+        {{ member }}{% if not forloop.last %}, {% endif %}{% endfor %}
+</p>
+{% endblock %}
